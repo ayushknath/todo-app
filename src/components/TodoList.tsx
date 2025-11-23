@@ -20,7 +20,7 @@ export default function TodoList() {
       {todos.map((todo) => (
         <li
           key={todo.id}
-          className={`p-4 border-b ${
+          className={`p-4 border-b grid grid-rows-1 grid-cols-[5%_85%_10%] items-center ${
             theme === "dark" ? liDarkTheme : liLightTheme
           }`}
         >
