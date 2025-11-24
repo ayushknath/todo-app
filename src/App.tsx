@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import type { TodoItemType } from "./types/TodoItemType.ts";
 import { ThemeContext } from "./contexts/ThemeContext.ts";
@@ -7,9 +7,21 @@ import Header from "./components/Header/Header.tsx";
 import TodoInput from "./components/TodoInput.tsx";
 import TodoList from "./components/TodoList.tsx";
 
+type ThemeType = "light" | "dark";
+
 export default function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState<ThemeType>("dark");
   const [todos, setTodos] = useState<TodoItemType[]>([]);
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    if (!root) return;
+    if (theme === "light") {
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+    }
+  }, [theme]);
 
   const handleTheme = () => {
     if (theme === "dark") {
@@ -29,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <div id="app" className="w-xl mx-auto my-12">
+    <div id="app" className="w-xl mx-auto">
       <ThemeContext value={theme}>
         <TodosContext value={{ todos, setTodos, deleteTodo }}>
           <Header themeHandler={handleTheme} />

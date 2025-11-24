@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer base {
+  #root {
+    @apply min-h-screen pt-12 pb-8 bg-gray-900;
+  }
+
+  #root.light {
+    @apply bg-gray-200 text-black;
+  }
+}

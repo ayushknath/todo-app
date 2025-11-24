@@ -10,8 +10,9 @@ export default function TodoInput() {
   const { todos, setTodos } = useContext(TodosContext);
   const [task, setTask] = useState("");
 
-  const inputDarkTheme = "bg-gray-700 text-gray-50 placeholder:text-gray-50";
-  const inputLightTheme = "";
+  const inputDarkTheme =
+    "bg-gray-700 text-gray-50 placeholder:text-gray-50 ring-gray-500";
+  const inputLightTheme = "bg-gray-50 ring-gray-300";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,9 +32,9 @@ export default function TodoInput() {
   };
 
   return (
-    <form className="mb-7" onSubmit={handleSubmit}>
+    <form className="mb-9" onSubmit={handleSubmit}>
       <input
-        className={`w-full p-4 rounded-sm ${
+        className={`w-full p-4 rounded-sm ring ${
           theme === "dark" ? inputDarkTheme : inputLightTheme
         }`}
         type="text"
