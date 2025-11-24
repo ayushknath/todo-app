@@ -11,7 +11,7 @@ interface TodoItemProps {
 
 export default function TodoItem({ item }: TodoItemProps) {
   const [checked, setChecked] = useState(false);
-  const { todos, setTodos } = useContext(TodosContext);
+  const { todos, setTodos, deleteTodo } = useContext(TodosContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
@@ -40,7 +40,11 @@ export default function TodoItem({ item }: TodoItemProps) {
       </label>
       <div className="flex justify-between items-center">
         <TodoItemEdit />
-        <TodoItemDelete />
+        <TodoItemDelete
+          onClick={() => {
+            deleteTodo(item.id);
+          }}
+        />
       </div>
     </>
   );
