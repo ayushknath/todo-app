@@ -6,7 +6,7 @@ import TodoItem from "./TodoItem.tsx";
 
 export default function TodoList() {
   const theme = useContext(ThemeContext);
-  const { todos, setTodos } = useContext(TodosContext);
+  const { todos } = useContext(TodosContext);
 
   const ulDarkTheme = "bg-gray-700";
   const ulLightTheme = "";
