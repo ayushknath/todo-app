@@ -21,12 +21,10 @@ export default function App() {
 
   const deleteTodo = (todoId: string) => {
     const i = todos.findIndex((t) => todoId === t.id);
-    let newTodos: TodoItemType[];
-    if (i === todos.length - 1) {
-      newTodos = todos.slice(0, i);
-    } else {
-      newTodos = [...todos.slice(0, i), ...todos.slice(i + 1)];
-    }
+    const newTodos =
+      i === todos.length - 1
+        ? todos.slice(0, i)
+        : [...todos.slice(0, i), ...todos.slice(i + 1)];
     setTodos(newTodos);
   };
 
