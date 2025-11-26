@@ -29,7 +29,11 @@ export default function ThemeSwitcher({ themeHandler }: ThemeSwitcherProps) {
   );
 
   return (
-    <button className="hover:cursor-pointer" onClick={themeHandler}>
+    <button
+      className="justify-self-center hover:cursor-pointer"
+      title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      onClick={themeHandler}
+    >
       {theme === "dark" ? lightThemeIcon : darkThemeIcon}
     </button>
   );

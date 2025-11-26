@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import type { TodoItemType } from "./types/TodoItemType.ts";
 import { ThemeContext } from "./contexts/ThemeContext.ts";
 import { TodosContext } from "./contexts/TodosContext.ts";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { NotificationContext } from "./contexts/NotificationContext.tsx";
 import Header from "./components/Header/Header.tsx";
 import TodoInput from "./components/TodoInput.tsx";
 import TodoList from "./components/TodoList.tsx";
+import Notification from "./components/Notification/Notification.tsx";
 
 type ThemeType = "light" | "dark";
 
 export default function App() {
   const [theme, setTheme] = useState<ThemeType>("dark");
   const [todos, setTodos] = useState<TodoItemType[]>([]);
+  const { notification } = useContext(NotificationContext);
 
   useEffect(() => {
     const root = document.getElementById("root");
@@ -42,15 +46,23 @@ export default function App() {
 
   return (
     <div id="app" className="w-xl mx-auto">
-      <ThemeContext value={theme}>
-        <TodosContext value={{ todos, setTodos, deleteTodo }}>
-          <Header themeHandler={handleTheme} />
-          <main>
-            <TodoInput />
-            <TodoList />
-          </main>
-        </TodosContext>
-      </ThemeContext>
+      <AuthProvider>
+        <ThemeContext value={theme}>
+          <TodosContext value={{ todos, setTodos, deleteTodo }}>
+            <Header themeHandler={handleTheme} />
+            <main>
+              <TodoInput />
+              <TodoList />
+            </main>
+            {notification.notify && (
+              <Notification
+                level={notification.level}
+                message={notification.message}
+              />
+            )}
+          </TodosContext>
+        </ThemeContext>
+      </AuthProvider>
     </div>
   );
 }
