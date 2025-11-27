@@ -9,6 +9,7 @@ Link to live site: [Todo App](https://ayushknath.github.io/todo-app/)
 Below are some features to be implemented (highest to lowest priority)
 
 - [ ] Make tasks and theme persistent across refreshes
+- [ ] Notification component
 - [ ] Implement task "edit" feature
 - [ ] Add display filters (All, Active, Completed)
 - [ ] Drag n drop tasks
