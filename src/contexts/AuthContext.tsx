@@ -3,6 +3,7 @@ import {
   useEffect,
   useState,
   useContext,
+  useRef,
   type ReactNode,
 } from "react";
 import { auth, googleProvider } from "../firebase/firebase";
@@ -29,15 +30,20 @@ export const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const { triggerNotification } = useContext(NotificationContext);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
-      triggerNotification({
-        notify: true,
-        level: "INFO",
-        message: u !== null ? `Signed in as ${u?.displayName}` : "Signed out",
-      });
+      if (!isFirstRender.current) {
+        triggerNotification({
+          notify: true,
+          level: "INFO",
+          message: u !== null ? `Signed in as ${u?.displayName}` : "Signed out",
+        });
+      } else {
+        isFirstRender.current = false;
+      }
     });
 
     return () => unsub();
