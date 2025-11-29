@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
-import { ThemeContext } from "../contexts/ThemeContext.ts";
-import { TodosContext } from "../contexts/TodosContext.ts";
+import { ThemeContext } from "../contexts/ThemeContext.tsx";
+import { TodosContext } from "../contexts/TodosContext.tsx";
 import TodoItem from "./TodoItem.tsx";
 
 export default function TodoList() {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { todos } = useContext(TodosContext);
 
   const ulDarkTheme = "bg-gray-700";

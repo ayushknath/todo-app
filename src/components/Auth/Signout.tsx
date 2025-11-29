@@ -4,7 +4,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 
 export default function Signout() {
   const { user, logout } = useContext(AuthContext);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const darkStyles = "bg-blue-800 hover:opacity-90 active:opacity-85";
   const lightStyles =

@@ -1,13 +1,9 @@
 import { useContext } from "react";
 
-import { ThemeContext } from "../../contexts/ThemeContext.ts";
+import { ThemeContext } from "../../contexts/ThemeContext.tsx";
 
-interface ThemeSwitcherProps {
-  themeHandler: () => void;
-}
-
-export default function ThemeSwitcher({ themeHandler }: ThemeSwitcherProps) {
-  const theme = useContext(ThemeContext);
+export default function ThemeSwitcher() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const darkThemeIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
@@ -32,7 +28,7 @@ export default function ThemeSwitcher({ themeHandler }: ThemeSwitcherProps) {
     <button
       className="justify-self-center hover:cursor-pointer"
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      onClick={themeHandler}
+      onClick={toggleTheme}
     >
       {theme === "dark" ? lightThemeIcon : darkThemeIcon}
     </button>

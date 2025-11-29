@@ -4,7 +4,7 @@ import { FaTimesCircle } from "react-icons/fa";
 import { IoWarning } from "react-icons/io5";
 
 import type { NotificationLevelType } from "../../types/NotificationLevelType.ts";
-import { ThemeContext } from "../../contexts/ThemeContext.ts";
+import { ThemeContext } from "../../contexts/ThemeContext.tsx";
 
 interface NotificationProps {
   level: NotificationLevelType;
@@ -19,7 +19,7 @@ interface NotificationStyle {
 }
 
 export default function Notification({ level, message }: NotificationProps) {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const iconDimensions = "w-5 h-5";
   const notifStyle: NotificationStyle = {

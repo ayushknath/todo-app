@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa6";
 
 import { AuthContext } from "../../contexts/AuthContext.tsx";
-import { ThemeContext } from "../../contexts/ThemeContext.ts";
+import { ThemeContext } from "../../contexts/ThemeContext.tsx";
 
 export default function Signin() {
   const { loginWithGoogle } = useContext(AuthContext);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const darkStyles = "bg-blue-800 hover:opacity-90 active:opacity-85";
   const lightStyles =

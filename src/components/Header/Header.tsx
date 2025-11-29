@@ -1,15 +1,11 @@
 import { useContext } from "react";
 
-import { ThemeContext } from "../../contexts/ThemeContext.ts";
+import { ThemeContext } from "../../contexts/ThemeContext.tsx";
 import ThemeSwitcher from "./ThemeSwitcher.tsx";
 import Auth from "../Auth/Auth.tsx";
 
-interface HeaderProps {
-  themeHandler: () => void;
-}
-
-export default function Header({ themeHandler }: HeaderProps) {
-  const theme = useContext(ThemeContext);
+export default function Header() {
+  const { theme } = useContext(ThemeContext);
 
   return (
     <header className="grid grid-rows-1 grid-cols-[72%_5%_auto] gap-2 mb-8">
@@ -20,7 +16,7 @@ export default function Header({ themeHandler }: HeaderProps) {
       >
         Todo
       </h1>
-      <ThemeSwitcher themeHandler={themeHandler} />
+      <ThemeSwitcher />
       <Auth />
     </header>
   );

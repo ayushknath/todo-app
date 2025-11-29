@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import type { TodoItemType } from "../types/TodoItemType.ts";
-import { ThemeContext } from "../contexts/ThemeContext.ts";
-import { TodosContext } from "../contexts/TodosContext.ts";
+import { ThemeContext } from "../contexts/ThemeContext.tsx";
+import { TodosContext } from "../contexts/TodosContext.tsx";
 
 export default function TodoInput() {
-  const theme = useContext(ThemeContext);
-  const { todos, setTodos } = useContext(TodosContext);
+  const { theme } = useContext(ThemeContext);
+  const { addTodo } = useContext(TodosContext);
   const [task, setTask] = useState("");
 
   const inputDarkTheme =
@@ -28,7 +28,7 @@ export default function TodoInput() {
     };
 
     setTask("");
-    setTodos([...todos, newTodoItem]);
+    addTodo(newTodoItem);
   };
 
   return (

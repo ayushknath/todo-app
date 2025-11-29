@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import type { TodoItemType } from "../types/TodoItemType.ts";
 import TodoItemDelete from "./TodoItemDelete.tsx";
 import TodoItemEdit from "./TodoItemEdit.tsx";
-import { TodosContext } from "../contexts/TodosContext.ts";
+import { TodosContext } from "../contexts/TodosContext.tsx";
 
 interface TodoItemProps {
   item: TodoItemType;
@@ -11,16 +11,16 @@ interface TodoItemProps {
 
 export default function TodoItem({ item }: TodoItemProps) {
   const [checked, setChecked] = useState(false);
-  const { todos, setTodos, deleteTodo } = useContext(TodosContext);
+  const { todos, updateTodo, deleteTodo } = useContext(TodosContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
     const newTodos = todos.map((todo) =>
       item.id === todo.id
         ? { ...todo, completed: e.target.checked }
-        : { ...todo },
+        : { ...todo }
     );
-    setTodos(newTodos);
+    updateTodo(newTodos);
   };
 
   return (
