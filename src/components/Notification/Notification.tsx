@@ -60,11 +60,11 @@ export default function Notification({ level, message }: NotificationProps) {
   }
 
   return (
-    <aside
-      className={`fixed bottom-6 right-6 grid grid-rows-1 grid-cols-[repeat(2,auto)] gap-4 max-w-md p-4 ring rounded-sm ${notifStyle[level]}`}
+    <div
+      className={`w-fit grid grid-rows-1 grid-cols-[repeat(2,auto)] gap-4 p-4 ring rounded-sm ${notifStyle[level]}`}
     >
       <div>{notificationLevelIcon}</div>
       <p>{message}</p>
-    </aside>
+    </div>
   );
 }

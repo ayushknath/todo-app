@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import type { TodoItemType } from "./types/TodoItemType.ts";
 import { ThemeContext } from "./contexts/ThemeContext.ts";
@@ -15,7 +16,7 @@ type ThemeType = "light" | "dark";
 export default function App() {
   const [theme, setTheme] = useState<ThemeType>("dark");
   const [todos, setTodos] = useState<TodoItemType[]>([]);
-  const { notification } = useContext(NotificationContext);
+  const { notificationQueue } = useContext(NotificationContext);
 
   useEffect(() => {
     const root = document.getElementById("root");
@@ -54,12 +55,15 @@ export default function App() {
               <TodoInput />
               <TodoList />
             </main>
-            {notification.notify && (
-              <Notification
-                level={notification.level}
-                message={notification.message}
-              />
-            )}
+            <aside className="fixed right-0 bottom-0 z-100 flex flex-col items-end gap-4 max-w-md pr-4 pb-4">
+              {notificationQueue.map((notification) => (
+                <Notification
+                  key={uuidv4()}
+                  level={notification.level}
+                  message={notification.message}
+                />
+              ))}
+            </aside>
           </TodosContext>
         </ThemeContext>
       </AuthProvider>

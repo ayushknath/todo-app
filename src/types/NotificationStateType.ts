@@ -1,7 +1,7 @@
 import type { NotificationLevelType } from "./NotificationLevelType.ts";
 
 export interface NotificationStateType {
-  notify: boolean;
+  id: string;
   level: NotificationLevelType;
   message: string;
 }

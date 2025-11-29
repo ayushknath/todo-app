@@ -6,6 +6,7 @@ import {
   useRef,
   type ReactNode,
 } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { auth, googleProvider } from "../firebase/firebase";
 import {
   type User,
@@ -37,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(u);
       if (!isFirstRender.current) {
         triggerNotification({
-          notify: true,
+          id: uuidv4(),
           level: "INFO",
           message: u !== null ? `Signed in as ${u?.displayName}` : "Signed out",
         });
